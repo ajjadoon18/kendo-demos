@@ -1,0 +1,25 @@
+﻿<script src="~/Scripts/jquery-3.3.1.js"></script>
+<!--<script src="Your Source for kendo" ></script>-->
+
+<h2>Kedo UI Jquery  Templates Demo by AJ Jadoon </h2>
+<h3>Type: Inline Template</h3>
+<h5>#= # Used for Raw html i.e consume html tags properly</h5>
+<h5>#: # Used for encoding html i.e display html tags as string</h5>
+
+
+<div id="books"></div> <!--Output-->
+
+<script>
+    $(function () { //Jquery document ready
+        var template = kendo.template("<p>Book Name #=bookName #</p> <p>Author Name: #:authorName#</p>");
+
+        var data = { // In real life usually coming from Ajax etc
+            bookName: "<b>7 habits by Stephen</b> Raw Html",
+            authorName: "<i>Stephen</i> Encoded Html"
+        };
+
+        var result = template(data); //Pass our data to inline template
+        $("#books").html(result); //Using jquery selector find element and display the result
+    });
+</script>
+
