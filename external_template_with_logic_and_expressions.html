@@ -1,0 +1,51 @@
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<!--<script src="Your Source for kendo" ></script>-->
+
+<h2>Kedo UI Jquery  Templates Demo by AJ Jadoon </h2>
+<h3>Type: External Template</h3>
+<h5>#= # Used for Raw html i.e consume html tags properly</h5>
+<h5>#: # Used for encoding html i.e display html tags as string</h5>
+
+<div id="books"></div> <!--Output-->
+
+<script id="externalTemplate" type="text/x-kendo-template">
+    <!--External template-->
+    <!--Note this area is actually HTML not JS-->
+    #for (var i = 0; i < data.length; i++) {#
+		<p>Book Name #=data[i].bookName #</p>
+		<p>Author Name: #=data[i].authorName#</p>
+		#if(data[i].showPrice){#
+			<p>Book Price: #=data[i].price#</p>
+		#}#
+		<p>******</p>
+    #}#
+
+</script>
+<script>
+    $(function () { //Jquery document ready
+        var template = kendo.template($("#externalTemplate").html());
+
+        var data = [// In real life usually coming from Ajax etc
+            {
+                bookName: "<b>7 habits by Stephen</b>",
+                authorName: "<i>Stephen</i> ",
+                price: "$ 80"
+
+            },
+            {
+                bookName: "<b>Pragmatic Programmer </b>",
+                authorName: "<i>Andy and Dave</i>",
+                showPrice: true,
+                price: "$ 50"
+            },
+            {
+                bookName: "<b>Kendo Demo</b>",
+                authorName: "<i>Aj Jadoon</i>",
+                price: "$ 49"
+            },
+        ];
+
+        var result = template(data); //Pass our data to inline template
+        $("#books").html(result); //Using jquery selector find element and display the result
+    });
+</script>
